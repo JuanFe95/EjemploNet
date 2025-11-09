@@ -1,1 +1,360 @@
-<h1>Github prueba</h1>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RMS — Networking Corporativo</title>
+  <style>
+    :root {
+      --azul: #0A2647;
+      --azul-claro: #144272;
+      --dorado: #f7c04a;
+      --gris: #f4f4f6;
+      --blanco: #fff;
+      --texto: #1b1b1b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
+    body { background-color: var(--gris); color: var(--texto); line-height: 1.6; }
+
+    /* HEADER */
+    header {
+      background-color: var(--azul);
+      color: var(--blanco);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      flex-wrap: wrap;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      width: 60px;
+      height: auto;
+      border-radius: 8px;
+    }
+    header h1 { font-size: 1.5rem; color: var(--dorado); }
+    nav a {
+      color: var(--blanco);
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--dorado); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(120deg, var(--azul), var(--azul-claro));
+      color: var(--blanco);
+      padding: 4rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 1.5rem; }
+
+    /* BOTONES */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn.primary { background-color: var(--dorado); color: var(--azul); }
+    .btn.primary:hover { background-color: #ffda72; }
+    .btn.outline {
+      border: 2px solid var(--dorado);
+      background: transparent;
+      color: var(--dorado);
+    }
+    .btn.outline:hover { background-color: var(--dorado); color: var(--azul); }
+
+    /* SECCIONES */
+    section { padding: 4rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    h3 {
+      text-align: center;
+      color: var(--azul);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    h3::after {
+      content: "";
+      width: 60px;
+      height: 4px;
+      background-color: var(--dorado);
+      display: block;
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* TARJETAS Y GRID */
+    .card {
+      background: var(--blanco);
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      padding: 1.5rem;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* LISTAS */
+    .agenda-list { line-height: 1.9; }
+    .agenda-list li { margin-bottom: 0.6rem; }
+    .price { color: var(--azul-claro); font-weight: 600; margin-top: 0.5rem; }
+
+    /* FORMULARIO */
+    form label { display: block; margin-bottom: 1rem; }
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+    }
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    /* REDES */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .social {
+      background-color: var(--azul);
+      color: var(--blanco);
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .social:hover {
+      background-color: var(--dorado);
+      color: var(--azul);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--azul);
+      color: var(--blanco);
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    /* ANIMACIONES */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    [data-animate] { opacity: 0; }
+    [data-visible] {
+      opacity: 1;
+      animation: fadeUp 0.8s ease-out;
+    }
+
+    /* IMÁGENES PONENTES */
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo-container">
+        <img src="imagenes/logo.png" alt="Logo RMS" class="logo">
+        <h1>Redes Que Impulsa Redes</h1>
+      </div>
+      <nav>
+        <a href="#agenda">Agenda</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#ponentes">Ponentes</a>
+        <a href="#registro">Registro</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="imagenes/banner-corporativo.png" alt="Banner del evento">
+    <div class="hero-content">
+      <h2>Networking Corporativo de Servicios de Marketing</h2>
+      <p>Fortalece tu red profesional, genera alianzas estratégicas y descubre oportunidades de venta en un entorno empresarial de alto nivel.</p>
+      <button id="btnRegistro" class="btn primary">Inscribirme</button>
+      <button id="btnAgenda" class="btn outline">Ver Agenda</button>
+    </div>
+  </section>
+
+  <section id="agenda" data-animate>
+    <h3>Agenda del Evento</h3>
+    <ul class="agenda-list card">
+      <li><strong>9:00 a.m.</strong> — Registro y café de bienvenida</li>
+      <li><strong>9:30 a.m.</strong> — Conferencia: Tendencias del marketing digital 2025</li>
+      <li><strong>10:30 a.m.</strong> — Panel: Inteligencia Artificial aplicada a las ventas</li>
+      <li><strong>11:30 a.m.</strong> — Networking dirigido y presentaciones 1:1</li>
+      <li><strong>12:30 p.m.</strong> — Cierre y entrega de reconocimientos</li>
+    </ul>
+  </section>
+
+  <section id="servicios" data-animate>
+    <h3>Servicios Destacados</h3>
+    <div class="grid">
+      <div class="card">
+        <img src="imagenes/estrategia.png" alt="Consultoría de Estrategia Digital">
+        <h4>Microempresas o emprendimientos nuevos</h4>
+        <p>Tarifa especial de apoyo para negocios en etapa inicial (cupos limitados).</p>
+        <p class="price">Desde $80.000 COP</p>
+      </div>
+      <div class="card">
+        <img src="imagenes/publicidad.png" alt="Gestión de Publicidad Online">
+        <h4>Emprendedores individuales</h4>
+        <p>Acceso completo al evento, materiales digitales, certificado y refrigerio.</p>
+        <p class="price">Desde $100.000 COP</p>
+      </div>
+      <div class="card">
+        <img src="imagenes/branding.png" alt="Diseño y Branding Corporativo">
+        <h4>Pequeñas empresas (2 representantes)</h4>
+        <p>Inscripción corporativa que incluye dos cupos, visibilidad de marca en el evento y certificado de participación.</p>
+        <p class="price">Desde $180.000 COP</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ponentes" data-animate>
+    <h3>Ponentes</h3>
+    <div class="grid">
+      <div class="card">
+        <img src="imagenes/ponente1.png" alt="Margarita">
+        <h4>Margarita</h4>
+        <p>CEO de Vision Marketing. Experta en estrategias omnicanal y liderazgo empresarial.</p>
+      </div>
+      <div class="card">
+        <img src="imagenes/ponente2.png" alt="Juan">
+        <h4>Juan</h4>
+        <p>Director de Performance Ads en DigitalBoost. Especialista en analítica y optimización.</p>
+      </div>
+      <div class="card">
+        <img src="imagenes/ponente3.png" alt="Keishla">
+        <h4>Keishla</h4>
+        <p>Consultora de Branding y comunicación corporativa. 15 años de experiencia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="registro" data-animate>
+    <h3>Registro</h3>
+    <div class="card">
+      <form id="formRegistro">
+        <label>Nombre completo
+          <input type="text" name="nombre" required>
+        </label>
+        <label>Empresa
+          <input type="text" name="empresa" required>
+        </label>
+        <label>Correo electrónico
+          <input type="email" name="email" required>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Enviar</button>
+          <button type="button" id="limpiar" class="btn outline">Limpiar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="contacto" data-animate>
+    <h3>Conecta con Nosotros</h3>
+    <div class="socials">
+      <a href="https://linkedin.com" target="_blank" class="social">LinkedIn</a>
+      <a href="https://twitter.com" target="_blank" class="social">Twitter</a>
+      <a href="https://instagram.com" target="_blank" class="social">Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 RMS — Bogotá.
+  </footer>
+
+  <script>
+    // Scroll suave
+    document.querySelectorAll('nav a, #btnAgenda').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href')) || document.querySelector('#agenda');
+        target.scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    // Scroll al formulario
+    document.getElementById('btnRegistro').addEventListener('click', () => {
+      document.querySelector('#registro').scrollIntoView({behavior:'smooth'});
+      document.querySelector('#formRegistro input[name="nombre"]').focus();
+    });
+
+    // Envío simulado del formulario
+    const form = document.getElementById('formRegistro');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const nombre = form.nombre.value;
+      const email = form.email.value;
+      alert(`¡Gracias ${nombre}! Te contactaremos pronto al correo: ${email}`);
+      form.reset();
+    });
+    document.getElementById('limpiar').addEventListener('click', ()=>form.reset());
+
+    // Animaciones al hacer scroll
+    const elements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute('data-visible', true);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    elements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+
